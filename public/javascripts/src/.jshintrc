@@ -1,0 +1,21 @@
+{
+    "maxerr": 100,
+    "node": true,
+    "curly": true,
+    "eqeqeq": true,
+    "latedef": false,
+    "undef": true,
+    "predef": [ "window", "document", "location", "angular", "$", "define", "navigator", "Image"],
+    "newcap": true,
+    "nonew": true,
+    "onevar": false,
+    "trailing": true,
+    "white": false,
+    "sub": true,
+    "evil": true,
+    "es5": false,
+    "es3": true,
+    "onecase": true,
+    "strict": false,
+    "laxcomma": true
+}

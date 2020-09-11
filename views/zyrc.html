@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="/stylesheets/global.css" rel="stylesheet">
+	<link href="/stylesheets/common.css" rel="stylesheet">
+	<link href="/stylesheets/index.css" rel="stylesheet">
+	<link href="/stylesheets/glyphicon.css" rel="stylesheet">
+
+	<link href="/stylesheets/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+	
+	<script src="/javascripts/js/jquery-3.3.1.min.js"></script>
+	<script src="/javascripts/js/bootstrap.min.js"></script>
+    <script src="/javascripts/zyrc.js"></script>	
+
+</head>
+
+<header>
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">东莞市亿东洋建材有限公司 - 蒸养管理系统</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+  </nav>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+
+
+      <ul class="nav nav-pills flex-column">
+   
+		<li class="nav-item">
+          <a class="nav-link active" href="zyrc">蒸养记录</a>
+        </li>
+		
+		<li class="nav-item">
+          <a class="nav-link" href="zyf">蒸压釜实时</a>
+        </li>
+
+      </ul>
+
+
+    </nav>
+
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+      <h1>蒸养记录</h1>
+
+      <div class="row text-center" style="height: 40px;" >
+		<div style="font-size:25px; padding-left: 15px" >选择日期</div>
+		<div class="input-group date form_date col-sm-3 col-md-4" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+			<input class="form-control" size="20" type="text" value="" readonly>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+		</div>
+
+		<input type="hidden" id="dtp_input2" value="" /><br/>
+	  </div>
+
+	  <div class="row text-center" style="height: 60px;" >
+	  </div>
+	  
+	  <section class="row text-center placeholders">
+        <div class="col-6 col-sm-3 col-md-4 placeholder">
+          	  
+          <div id='text1' class = "div_any_title_top"></div>
+		  
+        </div>
+        <div class="col-6 col-sm-3 col-md-4 placeholder">
+          
+          <div id='text2' class = "div_any_title_top_2"></div>
+
+        </div>
+		
+        <div class="col-6 col-sm-3 col-md-4 placeholder">
+          
+          <div id='text3' class = "div_any_title_top"></div>
+
+        </div>
+		
+      </section>
+	  
+	  <script type="text/javascript" src="javascripts/js/bootstrap-datetimepicker.js"></script>  <!--js文件中-->
+	  <script type="text/javascript" src="javascripts/js/bootstrap-datetimepicker.zh-CN.js"></script>  
+
+
+      <div class="table-responsive">
+        <table class="table table-striped" id="fuListTable">
+          
+            <tr id="trHeader">
+              <th>釜号</th>
+			  <th>序号</th>
+              <th>进釜时间</th>
+              <th>出釜时间</th>
+			  <th>蒸养时长</th>
+			  <th>进釜班次</th>
+              <th>详情</th>
+            </tr>
+          
+          
+        </table>
+      </div>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+	<link href="/stylesheets/common.css" rel="stylesheet">
+	<link href="/stylesheets/index.css" rel="stylesheet">
+
+
+	<script src="/javascripts/js/jquery-3.3.1.min.js"></script>
+    <script src="/javascripts/js/echarts.min.js"></script>
+	<script src="/javascripts/js/bootstrap.min.js"></script>
+    <script src="/javascripts/zyf.js"></script>
+
+</head>
+	
+
+
+<header>
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">东莞市亿东洋建材有限公司 - 蒸养管理系统</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+  </nav>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+
+
+      <ul class="nav nav-pills flex-column">
+
+		<li class="nav-item">
+          <a class="nav-link" href="zyrc">蒸养记录</a>
+        </li>
+		
+		<li class="nav-item">
+          <a class="nav-link  active" href="zyf">蒸压釜实时</a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+      <h1>实时数据</h1>
+
+
+
+      <h2>实时参数曲线</h2>
+
+		<div class="table-responsive">
+			<script type="text/javascript">
+			</script>
+			<ul id="list1" class="nav nav-pills flex-column">
+				<li>
+				<div class="div_any_child">
+				
+						<div class="div_any_title">1号釜</div>
+						<p id="lineChart1" class="p_chart"></p>
+				</div>
+				</li>
+				
+				<li>
+				<div class="div_any_child">
+						<div class="div_any_title">2号釜</div>
+						<p id="lineChart2" class="p_chart"></p>
+				</div>
+				</li>
+					
+				<li>
+				<div class="div_any_child">
+						<div class="div_any_title">3号釜</div>
+						<p id="lineChart3" class="p_chart"></p>
+				</div>
+				</li>	
+				
+				<li>
+				<div class="div_any_child">
+						<div class="div_any_title">4号釜</div>
+						<p id="lineChart4" class="p_chart"></p>
+				</div>
+				</li>
+				 
+				<li>
+				<div class="div_any_child">
+					<div class="div_any_title">5号釜</div>
+					<p id="lineChart5" class="p_chart"></p>
+				</div>
+				</li>
+			   
+				<li>  
+				<div class="div_any_child">
+					<div class="div_any_title">6号釜</div>
+					<p id="lineChart6" class="p_chart"></p>
+				</div>
+				</li>
+			  
+				<li> 
+				<div class="div_any_child">
+					<div class="div_any_title">7号釜</div>
+					<p id="lineChart7" class="p_chart"></p>
+				</div>
+				</li>
+				
+				
+			</ul>
+			
+			<!-- loading -->
+			<div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop='static'>
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">提示</h4>
+				  </div>
+				  <div class="modal-body">
+					正在加载数据...<span id="result"></span>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+			
+		</div>
+    </main>
+  </div>
+</div>
