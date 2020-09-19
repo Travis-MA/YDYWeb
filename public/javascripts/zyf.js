@@ -31,10 +31,10 @@ function generateData(jsdata,id) {
     var rec;
     for(var i in records){       
         rec = records[i];
-        categoryData.push(echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', resolveTime(rec.time)));
-        tempInData.push(doCalculation(rec.inTemp,2,id));
-        tempOutData.push(doCalculation(rec.outTemp,3,id));
-        pressInData.push(doCalculation(rec.inPress,1,id));
+        categoryData.push(echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', rec.time*1000));
+        tempInData.push(rec.inTemp/100);
+        tempOutData.push(rec.outTemp/100);
+        pressInData.push(rec.inPress/100);
         stateData.push(rec.state);     
     }
 
@@ -73,51 +73,6 @@ function resolveTime(timeStemp){
     return now.setHours(now.getHours()+8);
 }
 
-
-function findFuByDeviceId(DeviceId){
-
-    var startIndex = DeviceId.indexOf('_');
-    var subId = DeviceId.substr(startIndex+1,3);
-    for(var i = 0; i<7; i++){
-      if(subId == fuIdMap[i]){
-         return i;
-      }
-    }
-
-}
-
-function doCalculation(val,type,id){
-    var value;
-    switch(type){
-     
-      case 1: //Pressure         
-          value =  val*0.0006-0.1026;
-            
-          break;
-      case 2: //TempIn
-        if(id == 7){
-
-          value = val/4095*1000*5.1948-249.74;
-        }else{
-          value = val*2.5044-260.0353;
-        }            
-         break;
-      case 3: //TempOut
-        if(id == 7){
-          value = 0;
-        }else{
-          value = 0;
-        }
-         break;
-      default:
-          value = 0;
-  }
-
-  if(value<0){
-    value = 0;
-  }
-  return value;
-}
 
 function init1(i){
 
@@ -260,7 +215,7 @@ function init2(i){
                 sampling:'average',
                 smooth:'false',
                 yAxisIndex: 1,
-                data:dataTempOut[i].valueData
+                data:dataState[i].valueData
             },
             {
                 name:'釜内温度',

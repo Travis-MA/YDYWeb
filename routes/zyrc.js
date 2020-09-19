@@ -59,16 +59,19 @@ app.get('/list', function(req, res, next) {
 		var maxInt = 1000;
 		var inter = 1;
 		if(contents.length>1){
+		
 			while(eventListJson.length<contents.length && inter<maxInt){
 				inter = inter+1;
 				var bigTime = 1000000000000000;
 				var evPrefix = '';
+				console.log('for')
 				for(let j=0;j<contents.length;j++){
 					var eventPrefix = contents[j]['Key'];
+					console.log(eventPrefix)
 					var Xindex = eventPrefix.indexOf('X');
 					if(Xindex>0){
 						var Yindex = eventPrefix.indexOf('Y');
-						var startTimeTemp = parseInt(eventPrefix.substring(Xindex+4,Yindex));
+						var startTimeTemp = parseInt(eventPrefix.substring(Xindex+4,Yindex))*1000;
 								
 						if(startTimeTemp<bigTime && startTimeTemp>smallTime){
 							bigTime = startTimeTemp;	
@@ -76,12 +79,13 @@ app.get('/list', function(req, res, next) {
 						}
 					}
 				}
+
 				smallTime = bigTime;
 				var Xindex_A = evPrefix.indexOf('X');
 				if(Xindex_A>0){
 					var Yindex_A = evPrefix.indexOf('Y');
-					var startTime = evPrefix.substring(Xindex_A+4,Yindex_A);
-					var endTime = evPrefix.substring(Yindex_A+1);
+					var startTime = parseInt(evPrefix.substring(Xindex_A+4,Yindex_A))*1000;
+					var endTime = parseInt(evPrefix.substring(Yindex_A+1))*1000;
 					var fuId = evPrefix.substr(Xindex_A-1,1);
 					var recordJson = {
 						index : index,
@@ -96,6 +100,7 @@ app.get('/list', function(req, res, next) {
 			}
 		}
 		res.json(eventListJson);
+		console.log(eventListJson)
 		console.log('sended');
 
 	});

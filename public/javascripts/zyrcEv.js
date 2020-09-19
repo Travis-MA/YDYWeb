@@ -78,8 +78,8 @@ function diffTime(EndTime,StartTime){
       EndTime = new Date().getTime();
     }
     var time = EndTime-StartTime
-    var hour = Math.floor(time/1000/3600);
-    var min = Math.floor((time-hour*1000*3600)/1000/60);
+    var hour = Math.floor(time/3600);
+    var min = Math.floor((time-hour*1000*3600)/60);
     if(hour<12){
        return hour+'小时'+min+'分钟';
     }else{
@@ -88,20 +88,18 @@ function diffTime(EndTime,StartTime){
 
 }
 
-function generateData(jsdata,type,id) {
+function generateData(jsdata) {
 
 
   var categoryData = [];
   var valueData = [];
   var rec;
-  var val;
 
   for(var i in jsdata){
 
       rec = jsdata[i];
-      val = doCalculation(rec.v,type,id);
-      categoryData.push(echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', new Date(parseInt(rec.t))));
-      valueData.push(val);
+      categoryData.push(echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', new Date(parseInt(rec.t)*1000)));
+      valueData.push(rec.v);
   }
     
   return {
@@ -110,48 +108,6 @@ function generateData(jsdata,type,id) {
   };
 }
 
-function doCalculation(val,type,id){
-  var value;
-  switch(type){
-   
-    case 1: //Pressure         
-        value =  val*0.0006-0.1026;
-          
-        break;
-    case 2: //TempIn
-      if(id == 7){
-
-        value = val/4095*1000*5.1948-249.74;
-      }else{
-        value = val*2.5044-260.0353;
-      }            
-       break;
-    case 3: //TempOut
-      if(id == 7){
-        value = 0;
-      }else{
-        value = 0;
-      }
-       break;
-    case 4: //state
-      var i = val/4095*16+4;
-      var r = 12/i;
-      var rmin = 0;
-      var rmax = 1800;
-      var rstep = (rmax-rmin)/12;
-      value = Math.floor(r/rstep)+1;
-
-      break;
-    default:
-      value = 0;
-
-}
-
-if(value<0){
-  value = 0;
-}
-return value;
-}
 
 function banTime(startTime){
   var banOffset = new Date(startTime-zeroOffset*60*60*1000);
@@ -193,10 +149,10 @@ function init1(){
       $('#text3').text("蒸养时长:   "+diffTimeStr);
 
       var recordData = data.data;
-      dataPressure = generateData(recordData.pressure,1,data.FuId);
-      dataTempIn = generateData(recordData.tempIn,2,data.FuId); 
-      dataTempOut = generateData(recordData.tempOut,3,data.FuId);  
-      dataState = generateData(recordData.state,4,data.FuId);  
+      dataPressure = generateData(recordData.pressure);
+      dataTempIn = generateData(recordData.state); 
+      dataTempOut = generateData(recordData.tempOut);  
+      dataState = generateData(recordData.state);  
 
       init2();
     
@@ -338,7 +294,7 @@ function init2(){
                 itemStyle: {normal: {areaStyle: {type: 'default'}}},
                 sampling:'average',
                 smooth:'false',
-                yAxisIndex: 0,
+                yAxisIndex: 1,
                 data:dataTempOut.valueData
             },
             {
