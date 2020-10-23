@@ -73,18 +73,14 @@ function timeString(now,start){
 }
 
 function diffTime(EndTime,StartTime){
-
     if(!(EndTime>0)){
       EndTime = new Date().getTime();
     }
-    var time = EndTime-StartTime
+    var time = (EndTime-StartTime)/1000
     var hour = Math.floor(time/3600);
-    var min = Math.floor((time-hour*1000*3600)/60);
-    if(hour<12){
-       return hour+'小时'+min+'分钟';
-    }else{
-       return '见次日记录';
-    }
+    var min = Math.floor((time-hour*3600)/60);
+    
+    return hour+'小时'+min+'分钟';
 
 }
 
@@ -93,10 +89,10 @@ function generateData(jsdata) {
 
   var categoryData = [];
   var valueData = [];
+  var markLine = [];
   var rec;
 
   for(var i in jsdata){
-
       rec = jsdata[i];
       categoryData.push(echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', new Date(parseInt(rec.t)*1000)));
       valueData.push(rec.v);
@@ -136,21 +132,24 @@ function init1(){
   }).then(function (data) { 
       
 
-      $('#name_head').text(data.FuId+"号釜   ("+banTime(parseInt(data.startTime))+"进釜)");
+      $('#name_head').text(data.FuId+"号釜");
       var startTimeStr = timeString(new Date(parseInt(data.startTime)),0);
       var endTimeStr = timeString(new Date(parseInt(data.endTime)),new Date(parseInt(data.startTime)));
       var diffTimeStr = diffTime(parseInt(data.endTime),parseInt(data.startTime));
-      $('#text1').text("开始时间:   "+startTimeStr);
+      $('#text1').text("记录开始时间:   "+startTimeStr);
       if(endTimeStr.length>6){
-          $('#text2').text("结束时间:   "+endTimeStr);
+          $('#text2').text("记录结束时间:   "+endTimeStr);
       }else{
           $('#text2').text(endTimeStr);
       }
-      $('#text3').text("蒸养时长:   "+diffTimeStr);
+      $('#text3').text("记录时长:   "+diffTimeStr);
+      $('#text4').text("人工记录：正常");
+      $('#text5').text("数据质量：正常");
+      $('#text6').text("传感器状态：正常");
 
       var recordData = data.data;
       dataPressure = generateData(recordData.pressure);
-      dataTempIn = generateData(recordData.state); 
+      dataTempIn = generateData(recordData.tempIn); 
       dataTempOut = generateData(recordData.tempOut);  
       dataState = generateData(recordData.state);  
 

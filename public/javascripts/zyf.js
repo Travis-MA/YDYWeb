@@ -24,6 +24,8 @@ function generateData(jsdata,id) {
     var tempOutData = [];
     var pressInData = [];
     var stateData = [];
+    var refreshTime = 0;
+    var refreshState = 0;
 
     //获取不同时间的数
     //console.log('jsd: '+JSON.stringify(jsdata))
@@ -31,10 +33,12 @@ function generateData(jsdata,id) {
     var rec;
     for(var i in records){       
         rec = records[i];
-        categoryData.push(echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', rec.time*1000));
-        tempInData.push(rec.inTemp/100);
-        tempOutData.push(rec.outTemp/100);
-        pressInData.push(rec.inPress/100);
+        refreshTime = echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', rec.time*1000)
+        categoryData.push(refreshTime);
+        tempInData.push(rec.inTemp);
+        tempOutData.push(rec.outTemp);
+        pressInData.push(rec.inPress);
+        refreshState = rec.state
         stateData.push(rec.state);     
     }
 
@@ -52,7 +56,9 @@ function generateData(jsdata,id) {
     }
     dataState[id] = {
         categoryData : categoryData,
-        valueData : stateData
+        valueData : stateData,
+        refreshTime : refreshTime,
+        refreshState : refreshState
     }
 
     console.log(dataState[id].valueData.length)
@@ -106,6 +112,7 @@ function init2(i){
     $('#loading').modal('hide'); 
     console.log('init2 :' + i); 
     var lcs = echarts.init(document.getElementById('lineChart'+i));
+    $('#name' + i).text(i+"号釜-----更新时间："+dataState[i].refreshTime+'---状态：'+dataState[i].refreshState);
 
     lcs.setOption({
       color:["#87cefa","#ff7f50","#32cd32","#da70d6",],

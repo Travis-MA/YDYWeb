@@ -52,13 +52,8 @@ function addNew(rec){
   //添加列内容
   newTotalTime.innerHTML = evTotal;
 
-  //添加列:所属班次
-  var newBanTime = newTR.insertCell(5);
-  //添加列内容
-  newBanTime.innerHTML = ban;
-
   //添加列:察看按钮
-  var newMore = newTR.insertCell(6);
+  var newMore = newTR.insertCell(5);
   //添加列内容
   newMore.innerHTML = "<a class='btn btn-lg btn-success' href='zyrc/zyev?id="+FuId+"&startTime="+StartTime+"&endTime="+EndTime+"&prefix="+prefix+"' target='_Blank' >查看</a>";
   
@@ -141,7 +136,7 @@ function diffTime(EndTime,StartTime){
     var time = EndTime-StartTime
     var hour = Math.floor(time/1000/3600);
     var min = Math.floor((time-hour*1000*3600)/1000/60);
-    if(hour<12){
+    if(hour<24){
        return hour+'小时'+min+'分钟';
     }else{
        return '见次日记录';
@@ -175,8 +170,8 @@ function showTableData(data){
   }
 
   var outTotal = outNum*15*4.32;
-  $('#text1').text("累计出釜："+outTotal.toFixed(2)+"立方");
-  $('#text2').text("平均用时："+diffTime(parseInt(outTimeTotal/outNum),0));
+  //$('#text1').text("累计出釜："+outTotal.toFixed(2)+"立方");
+  //$('#text2').text("平均用时："+diffTime(parseInt(outTimeTotal/outNum),0));
 }
 
 function init(){
