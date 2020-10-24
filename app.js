@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
-var ScheduleProc = require(__dirname+'/service/Schedule');
 var compression = require('compression');
 
 var app = express();
