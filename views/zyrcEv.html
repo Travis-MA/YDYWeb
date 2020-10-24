@@ -1,100 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-	<link href="/stylesheets/common.css" rel="stylesheet">
-	<link href="/stylesheets/index.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/common.css" rel="stylesheet">
+    <link href="/stylesheets/index.css" rel="stylesheet">
 
-	<script src="/javascripts/js/jquery-3.3.1.min.js"></script>
-	<script src="/javascripts/js/echarts.min.js"></script>
-	<script src="/javascripts/js/bootstrap.min.js"></script>
-    <script src="/javascripts/zyrcEv.js"></script>	
+    <script src="/javascripts/js/jquery-3.3.1.min.js"></script>
+    <script src="/javascripts/js/echarts.min.js"></script>
+    <script src="/javascripts/js/bootstrap.min.js"></script>
+    <script src="/javascripts/zyrcEv.js"></script>
 
 </head>
 
 <header>
 
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">东莞市亿东洋建材有限公司 - 生产管理大数据平台</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">东莞市亿东洋建材有限公司 - 生产管理大数据平台</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">蒸养记录
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">蒸养过程记录
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
 
-      </ul>
+            </ul>
 
-    </div>
-  </nav>
+        </div>
+    </nav>
 </header>
 
 <div class="container-fluid">
-  <div class="row">
+    <div class="row">
 
 
-    <main role="main" class="col-sm-10 ml-sm-auto col-md-12 pt-3">
-      <h1 id="name_head"></h1>
-	  
-          <section class="row text-center placeholders">
-                <div class="col-6 col-sm-3 col-md-4 placeholder">
-                    <div id='text1' class = "div_any_title_top"></div>
+        <main role="main" class="col-sm-10 ml-sm-auto col-md-12 pt-3">
+            <h1 id="name_head"></h1>
+
+            <section class="row text-center placeholders">
+                <div class="col-sm-6 col-md-6 placeholder">
+                    <div id='text1' class="div_any_title_top" style="background-color: #2a84cb"></div>
                 </div>
-                <div class="col-6 col-sm-3 col-md-4 placeholder">
-                    <div id='text2' class = "div_any_title_top"></div>
+                <div class="col-sm-3 col-md-3 placeholder">
+                    <div id='text3' class="div_any_title_top" style="background-color: #1e9c95"></div>
                 </div>
-                <div class="col-6 col-sm-3 col-md-4 placeholder">
-                    <div id='text3' class = "div_any_title_top"></div>
+                <div class="col-sm-3 col-md-3 placeholder">
+                    <div id='text5' class="div_any_title_top" style="background-color: #ac6691"></div>
                 </div>
-          </section>
+                <div class="col-sm-6 col-md-6 placeholder">
+                    <div id='text2' class="div_any_title_top" style="background-color: #cb3352"></div>
+                </div>
+                <div class="col-sm-3 col-md-3 placeholder">
+                    <div id='text4' class="div_any_title_top" style="background-color: #01645b"></div>
+                </div>
+                <div class="col-sm-3 col-md-3 placeholder">
+                    <div id='text6' class="div_any_title_top" style="background-color: #6e3167"></div>
+                </div>
+            </section>
+            
+            <div class="div_any_child">
 
-        <section class="row text-center placeholders">
-            <div class="col-6 col-sm-3 col-md-4 placeholder">
-                <div id='text4' class = "div_any_title_top_2"></div>
+                <div class="div_any_title">蒸压釜参数曲线</div>
+                <p id="lineChart1" class="p_chart"></p>
             </div>
-            <div class="col-6 col-sm-3 col-md-4 placeholder">
-                <div id='text5' class = "div_any_title_top_2"></div>
+
+            <div class="row">
+                <div class="col-xs-8 col-md-5">
+
+                </div>
+                <div class="col-xs-10 col-md-7">
+                    <p id="pieChart" class="p_chart"></p>
+                </div>
             </div>
-            <div class="col-6 col-sm-3 col-md-4 placeholder">
-                <div id='text6' class = "div_any_title_top_2"></div>
-            </div>
-        </section>
-	  
-	  <div class="div_any_child">
-	
-			<div class="div_any_title">蒸养曲线</div>
-			<p id="lineChart1" class="p_chart"></p>
-	  </div>
-	  
-	  <section class="row text-center placeholders">
-        <div class="col-6 col-sm-3 col-md-4 placeholder">    	  
-          <div id='text21' class = "div_any_title_top"></div>	  
-        </div>
-        <div class="col-6 col-sm-3 col-md-4 placeholder">         
-          <div id='text22' class = "div_any_title_top_2"></div>
-        </div>
-		<div class="col-6 col-sm-3 col-md-4 placeholder">        
-          <div id='text23' class = "div_any_title_top_2"></div>
-        </div>
-		<div class="col-6 col-sm-3 col-md-4 placeholder">        
-          <div id='text24' class = "div_any_title_top_2"></div>
-        </div>
-		
-      </section>
-	  
-	  <div class="div_any_child2">
-			<div class="div_any_title">阶段信息</div>
-			<p id="lineChart2" class="p_chart2"></p>
-	  </div>
-	  
 
 
-    </main>
-  </div>
+        </main>
+    </div>
 </div>
